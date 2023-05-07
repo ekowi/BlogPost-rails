@@ -1,8 +1,9 @@
 class BlogPost < ApplicationRecord
+    has_rich_text :content
     validates :title, presence: true
-    validates :body, presence: true
+    validates :content, presence: true
 
-    scope :sorted, -> { order(published_at: :desc, id: :desc) }
+    scope :sorted, -> { order(Arel.sql("published_at DESC NULLS LAST")).order(updated_at: :desc) }
     scope :draft, -> { where(published_at: :nil) }
     scope :published, -> { where("published_at <= ?", Time.current) }
     scope :scheduled, -> { where("published_at > ?", Time.current) }
