@@ -10,3 +10,7 @@ user.update!(
     password: "Z0mb!erid3r",
     password_confirmation: "Z0mb!erid3r"
 )
+
+# 100.times do |i|
+#     BlogPost.create title: "Blog Post Tes Pagination in #{i}", content: "This body of post in #{i}"
+# end
